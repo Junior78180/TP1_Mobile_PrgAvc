@@ -6,7 +6,7 @@ import javax.swing.*;
 class UnMobile extends JPanel implements Runnable {
     int saLargeur, saHauteur, sonDebDessin;
     final int sonPas = 10, sonTemps = 50, sonCote = 40;
-    boolean isPaused = true;
+    boolean isPaused = false;
 
     UnMobile(int telleLargeur, int telleHauteur) {
         super();

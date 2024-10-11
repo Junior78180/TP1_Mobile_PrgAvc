@@ -6,31 +6,37 @@ import javax.swing.*;
 class UneFenetre extends JFrame 
 {
     UnMobile sonMobile;
-    private final int LARG=400, HAUT=250;
-    
+    private final int LARG=200, HAUT=100;
+    private final int NBRLIG = 4, NBRCOL = 1;
+
     public UneFenetre()
     {
 	super("le Mobile");
     Container leConteneur = getContentPane();
-    sonMobile = new UnMobile(LARG, HAUT);
-    leConteneur.add(sonMobile);
+    leConteneur.setLayout(new GridLayout(NBRLIG, NBRCOL));
 
-    JButton toggleButton = new JButton("Pause");
-    toggleButton.addActionListener(e -> {
-        if (sonMobile.isPaused) {
-            sonMobile.resume();
-            toggleButton.setText("Pause");
-        } else {
-            sonMobile.pause();
-            toggleButton.setText("Resume");
+    for (int i = 0; i < NBRLIG; i++){
+        for (int j = 0; j < NBRCOL; j++){
+            UnMobile sonMobile = new UnMobile(LARG, HAUT);
+            leConteneur.add(sonMobile);
+            Thread laTache1 = new Thread(sonMobile);
+            laTache1.start();
         }
-    });
+    }
 
-    leConteneur.add(toggleButton, BorderLayout.SOUTH);
+//    JButton button = new JButton("Stop");
+//    button.addActionListener(e -> {
+//        if (sonMobile.isPaused) {
+//            sonMobile.resume();
+//            button.setText("Pause");
+//        } else {
+//            sonMobile.pause();
+//            button.setText("Resume");
+//        }
+//    });
+//    leConteneur.add(button);
 
-    Thread laTache = new Thread(sonMobile);
-    laTache.start();
-    setSize(LARG+50, HAUT);
+    setSize(LARG*NBRCOL+HAUT, HAUT*NBRCOL+LARG);
     setVisible(true);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
