@@ -17,18 +17,26 @@ class UnMobile extends JPanel implements Runnable {
 
     public void run() {
         while (true) {
-            for (sonDebDessin = 0; sonDebDessin < saLargeur - sonPas; sonDebDessin += sonPas) {
-                repaint();
-                try {
-                    Thread.sleep(sonTemps);
-                } catch (InterruptedException telleExcp) {
-                    telleExcp.printStackTrace();
+            if (!isPaused) {
+                for (sonDebDessin = 0; sonDebDessin < saLargeur - sonPas; sonDebDessin += sonPas) {
+                    repaint();
+                    try {
+                        Thread.sleep(sonTemps);
+                    } catch (InterruptedException telleExcp) {
+                        telleExcp.printStackTrace();
+                    }
                 }
-            }
-            for (sonDebDessin = saLargeur - sonPas; sonDebDessin > 0; sonDebDessin -= sonPas) {
-                repaint();
+                for (sonDebDessin = saLargeur - sonPas; sonDebDessin > 0; sonDebDessin -= sonPas) {
+                    repaint();
+                    try {
+                        Thread.sleep(sonTemps);
+                    } catch (InterruptedException telleExcp) {
+                        telleExcp.printStackTrace();
+                    }
+                }
+            } else {
                 try {
-                    Thread.sleep(sonTemps);
+                    Thread.sleep(100);
                 } catch (InterruptedException telleExcp) {
                     telleExcp.printStackTrace();
                 }

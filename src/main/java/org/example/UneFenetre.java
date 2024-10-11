@@ -11,12 +11,27 @@ class UneFenetre extends JFrame
     public UneFenetre()
     {
 	super("le Mobile");
-    Container leconteneur = getContentPane();
+    Container leConteneur = getContentPane();
     sonMobile = new UnMobile(LARG, HAUT);
-    leconteneur.add(sonMobile);
+    leConteneur.add(sonMobile);
+
+    JButton toggleButton = new JButton("Pause");
+    toggleButton.addActionListener(e -> {
+        if (sonMobile.isPaused) {
+            sonMobile.resume();
+            toggleButton.setText("Pause");
+        } else {
+            sonMobile.pause();
+            toggleButton.setText("Resume");
+        }
+    });
+
+    leConteneur.add(toggleButton, BorderLayout.SOUTH);
+
     Thread laTache = new Thread(sonMobile);
     laTache.start();
-    setSize(LARG, HAUT);
+    setSize(LARG+50, HAUT);
     setVisible(true);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
