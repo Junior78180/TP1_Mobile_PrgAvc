@@ -5,9 +5,9 @@ import javax.swing.*;
 
 class UnMobile extends JPanel implements Runnable {
     int saLargeur, saHauteur, sonDebDessin;
-    final int sonPas = 20, sonTemps = 100, sonCote = 40;
+    final int sonPas = 20, sonTemps = 500, sonCote = 40;
     boolean isPaused = false;
-    static semaphoreBinaire sem = new semaphoreBinaire(1);
+    static SemaphoreBinaire semaphoreBinaire = new SemaphoreBinaire(2);
 
     UnMobile(int telleLargeur, int telleHauteur) {
         super();
@@ -19,6 +19,7 @@ class UnMobile extends JPanel implements Runnable {
     public void run() {
         while (true) {
 //            if (!isPaused) {
+            // Phase 1
             for (sonDebDessin = 0; sonDebDessin < saLargeur / 3; sonDebDessin += sonPas) {
                 repaint();
                 try {
@@ -27,27 +28,10 @@ class UnMobile extends JPanel implements Runnable {
                     telleExcp.printStackTrace();
                 }
             }
-            sem.syncWait();
-            for (sonDebDessin = sonDebDessin; sonDebDessin < (saLargeur / 3) * 2; sonDebDessin += sonPas) {
-                repaint();
-                try {
-                    Thread.sleep(sonTemps);
-                } catch (InterruptedException telleExcp) {
-                    telleExcp.printStackTrace();
-                }
-            }
-            sem.syncSignal();
-            for (sonDebDessin = sonDebDessin; sonDebDessin < saLargeur; sonDebDessin += sonPas) {
-                repaint();
-                try {
-                    Thread.sleep(sonTemps);
-                } catch (InterruptedException telleExcp) {
-                    telleExcp.printStackTrace();
-                }
-            }
-            sem.syncWait();
+            semaphoreBinaire.syncWait();
 
-            for (sonDebDessin = saLargeur  - sonPas; sonDebDessin >=( saLargeur / 3) * 2; sonDebDessin -= saLargeur / 3 + sonPas) {
+            // Phase 2
+            for (sonDebDessin = saLargeur / 3; sonDebDessin < (saLargeur / 3) * 2; sonDebDessin += sonPas) {
                 repaint();
                 try {
                     Thread.sleep(sonTemps);
@@ -55,33 +39,50 @@ class UnMobile extends JPanel implements Runnable {
                     telleExcp.printStackTrace();
                 }
             }
-            sem.syncSignal();
-            for (sonDebDessin = saLargeur - sonPas; sonDebDessin >= saLargeur / 3; sonDebDessin -= saLargeur / 3 + sonPas) {
-                repaint();
-                try {
-                    Thread.sleep(sonTemps);
-                } catch (InterruptedException telleExcp) {
-                    telleExcp.printStackTrace();
-                }
-            }
-            sem.syncWait();
-            for (sonDebDessin = saLargeur - sonPas; sonDebDessin >= 0; sonDebDessin -= saLargeur/3 + sonPas) {
-                repaint();
-                try {
-                    Thread.sleep(sonTemps);
-                } catch (InterruptedException telleExcp) {
-                    telleExcp.printStackTrace();
-                }
-            }
-            sem.syncSignal();
+            semaphoreBinaire.syncSignal();
 
-//            } else {
-//                try {
-//                    Thread.sleep(100);
-//                } catch (InterruptedException telleExcp) {
-//                    telleExcp.printStackTrace();
-//                }
-//            }
+            // Phase 3
+            for (sonDebDessin = (saLargeur / 3) * 2; sonDebDessin < saLargeur; sonDebDessin += sonPas) {
+                repaint();
+                try {
+                    Thread.sleep(sonTemps);
+                } catch (InterruptedException telleExcp) {
+                    telleExcp.printStackTrace();
+                }
+            }
+
+
+
+            // Phase 4
+            for (sonDebDessin = saLargeur - sonPas; sonDebDessin >= (saLargeur / 3) * 2; sonDebDessin -= sonPas) {
+                repaint();
+                try {
+                    Thread.sleep(sonTemps);
+                } catch (InterruptedException telleExcp) {
+                    telleExcp.printStackTrace();
+                }
+            }
+
+            semaphoreBinaire.syncWait();
+            // Phase 5
+            for (sonDebDessin = (saLargeur / 3) * 2 - sonPas; sonDebDessin >= saLargeur / 3; sonDebDessin -= sonPas) {
+                repaint();
+                try {
+                    Thread.sleep(sonTemps);
+                } catch (InterruptedException telleExcp) {
+                    telleExcp.printStackTrace();
+                }
+            }
+            semaphoreBinaire.syncSignal();
+            // Phase 6
+            for (sonDebDessin = saLargeur / 3 - sonPas; sonDebDessin >= 0; sonDebDessin -= sonPas) {
+                repaint();
+                try {
+                    Thread.sleep(sonTemps);
+                } catch (InterruptedException telleExcp) {
+                    telleExcp.printStackTrace();
+                }
+            }
         }
     }
 

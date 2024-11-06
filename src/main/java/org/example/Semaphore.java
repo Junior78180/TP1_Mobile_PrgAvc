@@ -1,10 +1,10 @@
 package org.example;
 
-public abstract class semaphore {
+public abstract class Semaphore {
 
     protected int valeur=0;
 
-    protected semaphore (int valeurInitiale){
+    protected Semaphore(int valeurInitiale){
 	valeur = valeurInitiale>0 ? valeurInitiale:0;
     }
 

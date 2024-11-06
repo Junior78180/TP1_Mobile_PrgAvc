@@ -3,7 +3,7 @@ package org.example;
 public class Affichage extends Thread {
     String texte;
 
-    static semaphoreBinaire sem = new semaphoreBinaire(1);
+    static SemaphoreBinaire sem = new SemaphoreBinaire(1);
 
     public Affichage(String txt) {
         texte = txt;

@@ -1,7 +1,7 @@
 package org.example;
 
-public final class semaphoreBinaire extends semaphore {
-public semaphoreBinaire(int valeurInitiale){
+public final class SemaphoreBinaire extends Semaphore {
+public SemaphoreBinaire(int valeurInitiale){
 	super((valeurInitiale != 0) ? 1:0);
 	//System.out.print(valeurInitiale);
 }

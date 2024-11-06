@@ -5,7 +5,7 @@ import javax.swing.*;
 
 class UneFenetre extends JFrame {
     UnMobile sonMobile;
-    private final int LARG = 600, HAUT = 100;
+    private final int LARG = 200, HAUT = 100;
     private final int NBRLIG = 3, NBRCOL = 3;
 
     public UneFenetre() {
@@ -13,13 +13,15 @@ class UneFenetre extends JFrame {
         Container leConteneur = getContentPane();
         leConteneur.setLayout(new GridLayout(NBRLIG, NBRCOL));
 
-        for (int i = 0; i < NBRLIG; i++) {
-            UnMobile sonMobile = new UnMobile(LARG, HAUT);
-            leConteneur.add(sonMobile);
-            Thread laTache1 = new Thread(sonMobile);
-            laTache1.start();
-        }
 
+        for (int i = 0; i < NBRLIG; i++) {
+            for (int j = 0; j < NBRCOL; j++) {
+                UnMobile sonMobile = new UnMobile(LARG, HAUT);
+                leConteneur.add(sonMobile);
+                Thread laTache = new Thread(sonMobile);
+                laTache.start();
+            }
+        }
 
 
 //    JButton button = new JButton("Stop");
@@ -34,10 +36,10 @@ class UneFenetre extends JFrame {
 //    });
 //    leConteneur.add(button);
 
-    setSize(LARG *NBRCOL+HAUT, HAUT *NBRCOL+LARG);
+        setSize(NBRCOL * LARG + 50*NBRCOL, NBRLIG * HAUT + 25*NBRLIG);
 
-    setVisible(true);
+        setVisible(true);
 
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-}
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
 }

@@ -11,8 +11,9 @@ public class Main {
 
 		TA.start();
 		TC.start();
-		TB.start();
 		TD.start();
+		TB.start();
+
 
 
 	}
