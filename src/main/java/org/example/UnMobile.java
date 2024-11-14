@@ -5,7 +5,7 @@ import javax.swing.*;
 
 class UnMobile extends JPanel implements Runnable {
     int saLargeur, saHauteur, sonDebDessin;
-    final int sonPas = 20, sonTemps = 500, sonCote = 40;
+    final int sonPas = 20, sonTemps = 50, sonCote = 10;
     boolean isPaused = false;
     static SemaphoreBinaire semaphoreBinaire = new SemaphoreBinaire(2);
 
@@ -50,8 +50,6 @@ class UnMobile extends JPanel implements Runnable {
                     telleExcp.printStackTrace();
                 }
             }
-
-
 
             // Phase 4
             for (sonDebDessin = saLargeur - sonPas; sonDebDessin >= (saLargeur / 3) * 2; sonDebDessin -= sonPas) {

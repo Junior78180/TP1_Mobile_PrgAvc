@@ -6,7 +6,7 @@ import javax.swing.*;
 class UneFenetre extends JFrame {
     UnMobile sonMobile;
     private final int LARG = 200, HAUT = 100;
-    private final int NBRLIG = 3, NBRCOL = 3;
+    private final int NBRLIG = 3, NBRCOL = 2;
 
     public UneFenetre() {
         super("le Mobile");
