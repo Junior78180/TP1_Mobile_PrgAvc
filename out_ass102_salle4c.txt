@@ -1,0 +1,24 @@
+Approximation value of pi: 3.1388
+Relativ error: 8.88929246317861E-4
+Ntot: 50000
+Available processors: 10
+Time Duration: 20ms
+------------------
+Approximation value of pi: 3.13984
+Relativ error: 5.578869646866702E-4
+Ntot: 50000
+Available processors: 10
+Time Duration: 27ms
+------------------
+Approximation value of pi: 3.15328
+Relativ error: 0.0037201979056235143
+Ntot: 50000
+Available processors: 10
+Time Duration: 21ms
+------------------
+Approximation value of pi: 3.14784
+Relativ error: 0.0019885921247836573
+Ntot: 50000
+Available processors: 10
+Time Duration: 21ms
+------------------
