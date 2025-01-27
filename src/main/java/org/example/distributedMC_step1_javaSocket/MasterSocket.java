@@ -75,13 +75,13 @@ public class MasterSocket {
 	       writer[i].println(message_to_send);          // send a message to each worker
 	   }
 	   
-	   //listen to workers's message 
+	   //listen to worker's message
 	   for(int i = 0 ; i < numWorkers ; i++) {
 	       tab_total_workers[i] = reader[i].readLine();      // read message from server
 	       System.out.println("Client sent: " + tab_total_workers[i]);
 	   }
 	   
-	   // compute PI with the result of each workers
+	   // compute PI with the result of each worker
 	   for(int i = 0 ; i < numWorkers ; i++) {
 	       total += Integer.parseInt(tab_total_workers[i]);
 	   }
