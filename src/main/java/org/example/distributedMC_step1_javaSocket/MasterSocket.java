@@ -98,14 +98,9 @@ public class MasterSocket {
 	   
 	   System.out.println( (Math.abs((pi - Math.PI)) / Math.PI) +" "+ totalCount*numWorkers +" "+ numWorkers +" "+ (stopTime - startTime));
 
-	   System.out.println("\n Repeat computation (y/N): ");
-	   try{
-	       message_repeat = bufferRead.readLine();
-	       System.out.println(message_repeat);
-	   }
-	   catch(IOException ioE){
-	       ioE.printStackTrace();
-	   }
+	   System.out.println("\n Repeat computation (y/N) in 3 sec");
+           Thread.sleep(2000);
+           message_repeat = "y";
        }
        
        for(int i = 0 ; i < numWorkers ; i++) {
