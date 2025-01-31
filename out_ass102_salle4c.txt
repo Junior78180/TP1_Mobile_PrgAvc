@@ -1,150 +1,24 @@
-Approximation value of pi: 3.14368
-Relativ error: 6.644229982590361E-4
-Ntot: 50000
-Available processors: 1
-Time Duration: 25ms
-------------------
-Approximation value of pi: 3.14408
-Relativ error: 7.917469527326797E-4
-Ntot: 50000
-Available processors: 2
-Time Duration: 16ms
-------------------
-Approximation value of pi: 3.13984
-Relativ error: 5.578869646866702E-4
-Ntot: 50000
-Available processors: 4
-Time Duration: 11ms
-------------------
-Approximation value of pi: 3.15096
-Relativ error: 0.002981718969677088
-Ntot: 50000
-Available processors: 8
-Time Duration: 10ms
-------------------
-Approximation value of pi: 3.146
-Relativ error: 0.0014029019342054624
-Ntot: 50000
-Available processors: 16
-Time Duration: 13ms
-------------------
-Approximation value of pi: 3.14068
-Relativ error: 2.905066602922307E-4
-Ntot: 100000
-Available processors: 1
-Time Duration: 39ms
-------------------
-Approximation value of pi: 3.14152
-Relativ error: 2.312635589793255E-5
-Ntot: 100000
-Available processors: 2
-Time Duration: 29ms
-------------------
-Approximation value of pi: 3.14128
-Relativ error: 9.952072858197735E-5
-Ntot: 100000
-Available processors: 4
-Time Duration: 26ms
-------------------
-Approximation value of pi: 3.13668
-Relativ error: 0.0015637462050273946
-Ntot: 100000
-Available processors: 8
-Time Duration: 17ms
-------------------
-Approximation value of pi: 3.14144
-Relativ error: 4.859114679266127E-5
-Ntot: 100000
-Available processors: 16
-Time Duration: 20ms
-------------------
-Approximation value of pi: 3.13576
-Relativ error: 0.001856591300316563
-Ntot: 100000
-Available processors: 1
-Time Duration: 30ms
-------------------
-Approximation value of pi: 3.14328
-Relativ error: 5.370990437855339E-4
-Ntot: 100000
-Available processors: 2
-Time Duration: 23ms
-------------------
-Approximation value of pi: 3.1456
-Relativ error: 0.00127557797973196
-Ntot: 100000
-Available processors: 4
-Time Duration: 18ms
-------------------
-Approximation value of pi: 3.1328
-Relativ error: 0.002798788563420536
-Ntot: 100000
-Available processors: 8
-Time Duration: 19ms
-------------------
-Approximation value of pi: 3.14408
-Relativ error: 7.917469527326797E-4
-Ntot: 100000
-Available processors: 16
-Time Duration: 19ms
-------------------
-Approximation value of pi: 3.14516
-Relativ error: 0.0011355216298111642
-Ntot: 100000
-Available processors: 1
-Time Duration: 33ms
-------------------
-Approximation value of pi: 3.13656
-Relativ error: 0.0016019433913695583
-Ntot: 100000
-Available processors: 2
-Time Duration: 26ms
-------------------
-Approximation value of pi: 3.1442
-Relativ error: 8.299441390747022E-4
-Ntot: 100000
-Available processors: 4
-Time Duration: 22ms
-------------------
-Approximation value of pi: 3.15056
-Relativ error: 0.002854395015203586
-Ntot: 100000
-Available processors: 8
-Time Duration: 18ms
-------------------
-Approximation value of pi: 3.14084
-Relativ error: 2.3957707850291466E-4
-Ntot: 100000
-Available processors: 16
-Time Duration: 20ms
-------------------
-Approximation value of pi: 3.138
-Relativ error: 0.0011435771552648654
-Ntot: 100000
-Available processors: 1
-Time Duration: 38ms
-------------------
-Approximation value of pi: 3.13848
-Relativ error: 9.907884098966345E-4
-Ntot: 100000
-Available processors: 2
-Time Duration: 28ms
-------------------
-Approximation value of pi: 3.13868
-Relativ error: 9.271264326598833E-4
-Ntot: 100000
-Available processors: 4
-Time Duration: 25ms
-------------------
-Approximation value of pi: 3.14952
-Relativ error: 0.002523352733572395
-Ntot: 100000
-Available processors: 8
-Time Duration: 18ms
-------------------
-Approximation value of pi: 3.14628
-Relativ error: 0.0014920287023369421
-Ntot: 100000
-Available processors: 16
-Time Duration: 21ms
-------------------
+9,678959e-03 12000 1 17
+2,204610e-03 6000 2 4
+4,326676e-03 3000 4 2
+1,158882e-02 2000 6 1
+3,477850e-03 1500 8 1
+2,491072e-02 1200 10 1
+5,859240e-03 1000 12 4
+2,384968e-02 750 16 1
+4,212717e-05 12000000 1 1490
+5,113763e-05 6000000 2 529
+3,987403e-04 3000000 4 363
+6,221856e-04 2000000 6 211
+1,670107e-04 1500000 8 480
+2,124230e-04 1200000 10 509
+9,118476e-04 1000000 12 369
+3,459384e-05 750000 16 281
+2,495783e-02 1200 1 1
+1,615109e-03 600 2 0
+2,629023e-03 300 4 0
+1,960555e-02 200 6 1
+2,707990e-02 150 8 0
+7,164328e-02 120 10 1
+1,859164e-02 100 12 0
+1,615109e-03 75 16 0

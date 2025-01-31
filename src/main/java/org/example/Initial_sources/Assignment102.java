@@ -51,33 +51,28 @@ class PiMonteCarlo {
 public class Assignment102 {
     public static void main(String[] args) {
 
-        int[] numworkersList = {1, 2, 4, 8, 16};
-        for (int numworkers : numworkersList) {
-            PiMonteCarlo PiVal = new PiMonteCarlo(100000, numworkers);
-            long startTime = System.currentTimeMillis();
-            double value = PiVal.getPi();
-            long stopTime = System.currentTimeMillis();
-//		System.out.println("Approximation value of pi: " + value);
-//		System.out.println("Difference to exact value of pi: (Absolute error) " + (value - Math.PI));
-//		System.out.println("Relativ Error: " +  (Math.abs((value - Math.PI)) / Math.PI));
-//		System.out.println("Ntot: " + PiVal.nThrows);
-//		System.out.println("Available processors: " + Runtime.getRuntime().availableProcessors());
-//		System.out.println("Time Duration: " + (stopTime - startTime) + "ms");
+        int[] n_fleche = {12000, 12000000, 1200};
+        int[] num_proc = {1, 2, 4, 6, 8, 10, 12, 16};
+        for (int fleche : n_fleche) {
+            for (int n_proc : num_proc) {
+                PiMonteCarlo PiVal = new PiMonteCarlo(fleche / n_proc, n_proc);
+                long startTime = System.currentTimeMillis();
+                double value = PiVal.getPi();
+                long stopTime = System.currentTimeMillis();
+                double relativeError = Math.abs((value - Math.PI)) / Math.PI;
+                long timeDuration = stopTime - startTime;
 
-            try {
-                File fichier = new File("D:\\IUT\\3emeAnneeIUT\\TP1_Mobile\\out_ass102_salle4c.txt");
-                FileOutputStream fos = new FileOutputStream(fichier, true);
-                PrintStream ps = new PrintStream(fos);
-                System.setOut(ps);
-                System.out.println("Approximation value of pi: " + value +
-                        "\nRelativ error: " + (Math.abs((value - Math.PI)) / Math.PI) +
-                        "\nNtot: " + PiVal.nTot +
-                        "\nAvailable processors: " + PiVal.nb_proc +
-                        "\nTime Duration: " + (stopTime - startTime) + "ms\n------------------");
-                ps.close();
+                try {
+                    File fichier = new File("D:\\IUT\\3emeAnneeIUT\\TP1_Mobile\\out_ass102_salle4c.txt");
+                    FileOutputStream fos = new FileOutputStream(fichier, true);
+                    PrintStream ps = new PrintStream(fos);
+                    System.setOut(ps);
+                    System.out.printf("%e %d %d %d%n", relativeError, PiVal.nTot, PiVal.nb_proc, timeDuration);
+                    ps.close();
 
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         }
         System.exit(0);

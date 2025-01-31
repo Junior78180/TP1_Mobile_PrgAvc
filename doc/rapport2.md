@@ -58,3 +58,25 @@ Une méthode : Main
 > 
 > 7.385699400846197E-5 32000000 2 565
 **
+ 
+
+![img.png](img.png)
+
+Cette image illustre un diagramme de scalabilité. 
+
+1. **Forte scalabilité** :
+   - **Définition** : La forte scalabilité mesure la façon dont le temps de résolution varie en fonction du nombre de processeurs pour une taille totale de flèches dans cet exemple.
+   - **Scénario idéal** : Dans un scénario idéal, doubler le nombre de processeurs réduit de moitié le temps de résolution.
+   - **Représentation graphique** : Le graphique montre une courbe où le temps de résolution diminue au fur et à mesure que le nombre de processeurs augmente, en suivant idéalement une relation 1/x.
+
+2. **Faible scalabilité** :
+   - **Définition** : La scalabilité faible (ou faible mise à l'échelle) mesure la manière dont le temps de résolution varie en fonction du nombre de processeurs pour une taille de problème fixe par processeur.
+   - **Scénario idéal** : Dans un scénario idéal, le temps de résolution reste constant lorsque le nombre de processeurs augmente.
+   - **Représentation graphique** : Le graphique montre une ligne horizontale indiquant que le temps de résolution reste constant lorsque le nombre de processeurs augmente.
+
+#### Éléments du diagramme :
+
+- **Axe X** : nombre de processeurs.
+- **Axe Y** : temps d'exécution.
+- **Courbe de forte évolutivité** : Courbe de forte extensibilité** : courbe à pente descendante indiquant la diminution du temps d'exécution avec l'augmentation du nombre de processeurs.
+- **Ligne d'extensibilité faible** : Ligne horizontale indiquant un temps d'exécution constant avec un nombre croissant de processeurs.

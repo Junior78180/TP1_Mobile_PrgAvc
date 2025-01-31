@@ -1,9 +1,6 @@
 package org.example.Initial_sources;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -20,11 +17,15 @@ import java.util.concurrent.Future;
 public class Pi {
     public static void main(String[] args) throws Exception {
         long total = 0;
-        int[] numworkersList = {1, 2, 4, 8, 16};
-        for (int numworkers : numworkersList) {
-            total = new Master().doRun(100000, numworkers);
-            // crée une instance de la classe Master et lance la simulation Monte-Carlo avec 50 000 itérations réparties sur 10 workers
-            System.out.println("total from Master = " + total);
+        int[] n_fleche = {12000, 12000000, 120000000};
+        int[] num_proc = {1, 2, 3, 4, 5, 6, 8, 10, 12};
+        String filename = "D:\\IUT\\3emeAnneeIUT\\TP1_Mobile\\out_pi_salle_4c.txt";
+        for (int fleche : n_fleche) {
+            for (int proc : num_proc) {
+                for (int j = 0; j < num_proc.length; j++) {
+                    total = new Master().doRun(fleche / proc, proc, filename);
+                }
+            }
         }
         System.exit(0);
     }
@@ -35,7 +36,7 @@ public class Pi {
  * and aggregates the results.
  */
 class Master {
-    public long doRun(int Ntot, int numWorkers) throws InterruptedException, ExecutionException {
+    public long doRun(int Ntot, int numWorkers, String fichier) throws InterruptedException, ExecutionException {
 
         long startTime = System.currentTimeMillis();
 
@@ -60,27 +61,19 @@ class Master {
 
         long stopTime = System.currentTimeMillis();
 
-//	System.out.println("Approximation value of pi: " + pi );
-//	System.out.println("Absolute error :" + (pi - Math.PI));
-//	System.out.println("Relativ Error " + (Math.abs((pi - Math.PI)) / Math.PI));
-//	System.out.println("Ntot: " + Ntot*numWorkers);
-//	System.out.println("Available processors: " + numWorkers);
-//	System.out.println("Time Duration: " + (stopTime - startTime) + "ms");
-
         try {
-            File fichier = new File("D:\\IUT\\3emeAnneeIUT\\TP1_Mobile\\out_pi_salle_4c.txt");
-            FileOutputStream fos = new FileOutputStream(fichier, true);
-            PrintStream ps = new PrintStream(fos);
-            System.setOut(ps);
-            System.out.println("Approximation value of pi: " + pi +
-                    "\nRelativ error: " + (Math.abs((pi - Math.PI)) / Math.PI) +
-                    "\nNtot: " + Ntot +
-                    "\nAvailable processors: " + numWorkers +
-                    "\nTime Duration: " + (stopTime - startTime) + "ms\n------------------");
-            ps.close();
-        } catch (FileNotFoundException e) {
+            FileWriter fileWriter = new FileWriter(fichier, true);
+
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            bufferedWriter.write(String.format("%e", (Math.abs((pi - Math.PI)) / Math.PI)) + " " + (Ntot * numWorkers) + " " + numWorkers + " " + (stopTime - startTime));
+
+            bufferedWriter.newLine();
+            bufferedWriter.close();
+        } catch (IOException e) {
             e.printStackTrace();
         }
+        exec.shutdown();
         return total;
     }
 }
