@@ -13,7 +13,7 @@ public class Pi {
         int[] n_fleche = {12000, 12000000, 120000000};
         int n_total_faible = 25000000; // 15000000, 25000000
         int[] num_proc = {1, 2, 3, 4, 5, 6, 8, 10, 12};
-        String filename = "D:\\IUT\\3emeAnneeIUT\\TP1_Mobile\\out_piMws_salle_4c.txt";
+        String filename = "out_piMwSfaible_salle_4c.txt";
         boolean scalabilite_forte = false;
 
         if (scalabilite_forte) {
@@ -22,7 +22,6 @@ public class Pi {
                 for (int n : num_proc) {
                     for (int j = 0; j < 10; j++) {
                         total = new Master().doRun(f / n, n, filename);
-
                     }
                 }
             }

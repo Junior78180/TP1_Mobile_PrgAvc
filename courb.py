@@ -65,7 +65,7 @@ def plot_speedup(speedup_data, nombre_process_data, ntot_values):
 
 # Main
 if __name__ == "__main__":
-    file_path = 'D:\\IUT\\3emeAnneeIUT\\TP1_Mobile\\out_piMws_salle_4c.txt'  # Chemin du fichier contenant les données
+    file_path = 'out_ass102Sfaible_salle4c.txt'  # Chemin du fichier contenant les données
 
     # Lire toutes les données
     data = read_data(file_path)
@@ -86,7 +86,7 @@ if __name__ == "__main__":
         # print(filtered_data)
 
         # Calculer le speedup pour les données filtrées
-        speedup, nombre_process = calculate_speedup(filtered_data) # filtered datta or data
+        speedup, nombre_process = calculate_speedup(data) # filtered_data or data
         # print(speedup, nombre_process)
 
         # Ajouter les résultats à la liste

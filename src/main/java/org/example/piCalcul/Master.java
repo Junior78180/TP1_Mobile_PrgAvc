@@ -63,7 +63,6 @@ public class Master {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
         exec.shutdown();
         return total;

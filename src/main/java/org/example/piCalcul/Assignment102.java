@@ -45,13 +45,13 @@ class PiMonteCarlo {
 
 public class Assignment102 {
     public static void main(String[] args) {
-        int[] n_total = {12000, 12000000, 120000000};
-        int n_proc = 1;
+        int[] n_total = {1200000, 12000000};
+        int[] n_proc = {1, 2, 3, 4, 5, 6, 8, 10, 12};
 
         for (int k : n_total) {
-            for (n_proc = 1; n_proc <= 6; n_proc++) {
+            for (int n : n_proc) {
                 for (int j = 0; j < 10; j++) {
-                    execute(k, n_proc);
+                    execute(k, n);
                 }
             }
         }
@@ -74,7 +74,7 @@ public class Assignment102 {
         try {
             // Code tiré d'openclassroom
             // Création d'un fileWriter pour écrire dans un fichier
-            FileWriter fileWriter = new FileWriter("./out_ass102_salle4c.txt", true);
+            FileWriter fileWriter = new FileWriter("./out_ass102Sfaible_salle4c.txt", true);
 
             // Création d'un bufferedWriter qui utilise le fileWriter
             BufferedWriter writer = new BufferedWriter(fileWriter);
