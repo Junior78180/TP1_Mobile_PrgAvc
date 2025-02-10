@@ -11,6 +11,8 @@ target/
 *.iws
 *.iml
 *.ipr
+.idea/misc.xml
+.idea/inspectionProfiles/Project_Default.xml
 
 ### Eclipse ###
 .apt_generated

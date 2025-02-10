@@ -1,5 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from six import print_
+
 
 # Fonction pour lire les données à partir d'un fichier
 def read_data(file_path):
@@ -10,7 +12,7 @@ def read_data(file_path):
     return np.array([list(map(float, line.split())) for line in data])
 
 # Fonction pour calculer le speedup
-def calculate_speedup(data, ntot):
+def calculate_speedup(data):
     # Extraire les colonnes
     temps_execution = data[:, 3]  # temps_ms
     nombre_process = data[:, 2]    # nombre_process
@@ -44,7 +46,7 @@ def plot_speedup(speedup_data, nombre_process_data, ntot_values):
 
     # Ligne diagonale pour représenter une scalabilité idéale
     max_process = max(max(nombre_process) for nombre_process in nombre_process_data)
-    plt.plot([1, max_process//2], [1, max_process//2], color='blue', linestyle='--', label='Scalabilité idéale')
+    plt.plot([1, max_process], [1, max_process], color='blue', linestyle='--', label='Scalabilité idéale')
 
     plt.legend()
     plt.grid()
@@ -55,14 +57,7 @@ def plot_speedup(speedup_data, nombre_process_data, ntot_values):
 
     # Afficher toutes les unités des axes
     x_ticks = np.arange(0, max_process + 1, 1)  # Ajustez l'intervalle selon vos besoins
-
-    # Check if speedup_data is not empty and contains valid values
-    if speedup_data and all(len(speedup) > 0 for speedup in speedup_data):
-        max_speedup = max(max(speedup) for speedup in speedup_data if len(speedup) > 0 and np.isfinite(speedup).all())
-        y_ticks = np.arange(0, max_speedup + 1, 1)  # Ajustez l'intervalle selon vos besoins
-    else:
-        y_ticks = np.arange(0, 2, 1)  # Default range if speedup_data is empty or invalid
-
+    y_ticks = np.arange(0, max(max(speedup) for speedup in speedup_data) + 1, 1)  # Ajustez l'intervalle selon vos besoins
     plt.xticks(x_ticks)
     plt.yticks(y_ticks)
 
@@ -70,13 +65,15 @@ def plot_speedup(speedup_data, nombre_process_data, ntot_values):
 
 # Main
 if __name__ == "__main__":
-    file_path = 'D:\\IUT\\3emeAnneeIUT\\TP1_Mobile\\out_pi_salle_4c.txt'  # Remplacez par le chemin de votre fichier
-    # ntot_values = [12000, 12000000, 120000000]  # Nombre total de fléchettes
+    file_path = 'D:\\IUT\\3emeAnneeIUT\\TP1_Mobile\\out_piMws_salle_4c.txt'  # Chemin du fichier contenant les données
 
     # Lire toutes les données
     data = read_data(file_path)
-    #     print(data)
-    ntot_values = np.unique(data[:, 1])
+
+    # Filtrer les données pour récupérer uniquement celles avec 1 cœur (colonne 3, index 2)
+    filtered_data_1_core = data[data[:, 2] == 1]  # Supposons que la troisième colonne contient le nombre de cœurs
+
+    ntot_values = np.unique(filtered_data_1_core[:, 1])
 
     # Initialiser des listes pour stocker les résultats
     speedup_data = []
@@ -89,7 +86,7 @@ if __name__ == "__main__":
         # print(filtered_data)
 
         # Calculer le speedup pour les données filtrées
-        speedup, nombre_process = calculate_speedup(filtered_data, ntot)
+        speedup, nombre_process = calculate_speedup(filtered_data) # filtered datta or data
         # print(speedup, nombre_process)
 
         # Ajouter les résultats à la liste
