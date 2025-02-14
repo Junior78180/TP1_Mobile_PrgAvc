@@ -19,11 +19,11 @@ import java.util.concurrent.Future;
 public class Pi {
     public static void main(String[] args) throws Exception {
         long total = 0;
-        int[] n_fleche = {12000, 12000000, 120000000};
+        int[] n_fleche = {1200000, 12000000, 120000000};
         int n_total_faible = 25000000; // 15000000, 25000000
         int[] num_proc = {1, 2, 3, 4, 5, 6, 8, 10};
-        String filename = "out_piMwSfaible_salle_4c.txt";
-        boolean scalabilite_forte = false;
+        String filename = "out_pi_Scala_Forte_salle_G26_4c.txt"; // out_pi_Scala_Faible_salle_G26_4c
+        boolean scalabilite_forte = true;
 
         if (scalabilite_forte) {
             // Scalabilité forte

@@ -2,37 +2,43 @@ import numpy as np
 import matplotlib.pyplot as plt
 from six import print_
 
-
-# Fonction pour lire les données à partir d'un fichier
+# Function to read data from a file
 def read_data(file_path):
     with open(file_path, 'r') as file:
-        # Lire les lignes et remplacer les virgules par des points
+        # Read lines and replace commas with dots
         data = [line.strip().replace(',', '.') for line in file if line.strip()]
-    # Convertir les données en tableau NumPy
+    # Convert data to a NumPy array
     return np.array([list(map(float, line.split())) for line in data])
 
-# Fonction pour calculer le speedup
+# Function to calculate speedup
 def calculate_speedup(data):
-    # Extraire les colonnes
+    # Extract columns
     temps_execution = data[:, 3]  # temps_ms
     nombre_process = data[:, 2]    # nombre_process
 
-    # Calculer T1 (moyenne des temps d'exécution pour 1 processus)
+    # Calculate T1 (median execution time for 1 process)
     T1 = np.median(temps_execution[nombre_process == 1])
 
-    # Calculer Tp (moyenne des temps d'exécution pour chaque nombre de processus)
+    # Calculate Tp (median execution time for each number of processes)
     unique_processes = np.unique(nombre_process)
     Tp = []
 
     for p in unique_processes:
         Tp.append(np.median(temps_execution[nombre_process == p]))
 
-    # Calculer Sp (speedup pour chaque nombre de processus)
-    Sp = T1 / np.array(Tp)
+    # Convert Tp to a NumPy array and replace zero values to avoid division by zero
+    Tp = np.array(Tp)
+    Tp[Tp == 0] = np.nan
+
+    # Calculate Sp (speedup for each number of processes)
+    Sp = T1 / Tp
+
+    # Replace NaN values in Sp with zero
+    Sp = np.nan_to_num(Sp, nan=0.0)
 
     return Sp, unique_processes
 
-# Fonction pour tracer le graphique
+# Function to plot the graph
 def plot_speedup(speedup_data, nombre_process_data, ntot_values):
     plt.figure(figsize=(10, 6))
 
@@ -44,7 +50,7 @@ def plot_speedup(speedup_data, nombre_process_data, ntot_values):
     plt.ylabel('Speedup')
     plt.axhline(1, color='red', linestyle='--', label='Speedup = 1')
 
-    # Ligne diagonale pour représenter une scalabilité idéale
+    # Diagonal line to represent ideal scalability
     max_process = max(max(nombre_process) for nombre_process in nombre_process_data)
     plt.plot([1, max_process], [1, max_process], color='blue', linestyle='--', label='Scalabilité idéale')
 
@@ -52,12 +58,12 @@ def plot_speedup(speedup_data, nombre_process_data, ntot_values):
     plt.grid()
 
     plt.xlim(left=0)
-    plt.ylim(bottom=0)  # Pour ne pas avoir de valeurs négatives sur l'axe des ordonnées
+    plt.ylim(bottom=0)  # To avoid negative values on the y-axis
     plt.gca().set_aspect('equal', adjustable='box')
 
-    # Afficher toutes les unités des axes
-    x_ticks = np.arange(0, max_process + 1, 1)  # Ajustez l'intervalle selon vos besoins
-    y_ticks = np.arange(0, max(max(speedup) for speedup in speedup_data) + 1, 1)  # Ajustez l'intervalle selon vos besoins
+    # Display all units on the axes
+    x_ticks = np.arange(0, max_process + 1, 1)  # Adjust the interval as needed
+    y_ticks = np.arange(0, max(max(speedup) for speedup in speedup_data) + 1, 1)  # Adjust the interval as needed
     plt.xticks(x_ticks)
     plt.yticks(y_ticks)
 
@@ -65,33 +71,31 @@ def plot_speedup(speedup_data, nombre_process_data, ntot_values):
 
 # Main
 if __name__ == "__main__":
-    file_path = 'out_ass102Sfaible_salle4c.txt'  # Chemin du fichier contenant les données
+    file_path = 'out_pi_Scala_Forte_salle_G26_4c.txt'  # Path to the data file
 
-    # Lire toutes les données
+    # Read all data
     data = read_data(file_path)
 
-    # Filtrer les données pour récupérer uniquement celles avec 1 cœur (colonne 3, index 2)
-    filtered_data_1_core = data[data[:, 2] == 1]  # Supposons que la troisième colonne contient le nombre de cœurs
+    # Filter data to retrieve only those with 1 core (column 3, index 2)
+    filtered_data_1_core = data[data[:, 2] == 1]  # Assuming the third column contains the number of cores
 
     ntot_values = np.unique(filtered_data_1_core[:, 1])
 
-    # Initialiser des listes pour stocker les résultats
+    # Initialize lists to store results
     speedup_data = []
     nombre_process_data = []
 
-    # Calculer le speedup pour chaque ensemble de données
+    # Calculate speedup for each dataset
     for ntot in ntot_values:
-        # Filtrer les données pour le nombre total de fléchettes correspondant
+        # Filter data for the corresponding total number of darts
         filtered_data = data[data[:, 1] == ntot]
-        # print(filtered_data)
 
-        # Calculer le speedup pour les données filtrées
-        speedup, nombre_process = calculate_speedup(data) # filtered_data or data
-        # print(speedup, nombre_process)
+        # Calculate speedup for the filtered data
+        speedup, nombre_process = calculate_speedup(filtered_data)
 
-        # Ajouter les résultats à la liste
+        # Add results to the list
         speedup_data.append(speedup)
         nombre_process_data.append(nombre_process)
 
-    # Tracer les courbes pour chaque nombre total de fléchettes
+    # Plot the curves for each total number of darts
     plot_speedup(speedup_data, nombre_process_data, ntot_values)

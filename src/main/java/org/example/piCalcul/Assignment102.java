@@ -48,10 +48,10 @@ class PiMonteCarlo {
 public class Assignment102 {
     public static void main(String[] args) {
         int[] n_total = {1200000, 12000000};
-        int n_total_faible = 25000000;
-        int[] n_proc = {1, 2, 3, 4, 5, 6, 8, 10, 12};
-        String filename = "out_ass102_Scala_Faible_salle_G26_4c.txt";
-        boolean scalabilite_forte = false;
+        int n_total_faible = 2500000;
+        int[] n_proc = {1, 2, 3, 4, 5, 6};
+        String filename = "out_ass102_Scala_Forte_salle_G26_4c.txt";  // out_ass102_Scala_Forte_salle_G26_4c  ; out_ass102_Scala_Faible_salle_G26_4c
+        boolean scalabilite_forte = true;
 
         if (scalabilite_forte) {
             for (int f : n_total) {
