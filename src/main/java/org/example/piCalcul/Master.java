@@ -12,9 +12,7 @@ import java.util.concurrent.*;
  * and aggregates the results.
  */
 public class Master {
-
-    public Master() {
-    }
+    public Master(){}
 
     public long doRun(int Ntot, int numWorkers, String fichier) throws InterruptedException, ExecutionException {
 

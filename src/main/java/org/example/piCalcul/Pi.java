@@ -1,7 +1,16 @@
 package org.example.piCalcul;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /**
  * Approximates PI using the Monte Carlo method.  Demonstrates
@@ -12,7 +21,7 @@ public class Pi {
         long total = 0;
         int[] n_fleche = {12000, 12000000, 120000000};
         int n_total_faible = 25000000; // 15000000, 25000000
-        int[] num_proc = {1, 2, 3, 4, 5, 6, 8, 10, 12};
+        int[] num_proc = {1, 2, 3, 4, 5, 6, 8, 10};
         String filename = "out_piMwSfaible_salle_4c.txt";
         boolean scalabilite_forte = false;
 
