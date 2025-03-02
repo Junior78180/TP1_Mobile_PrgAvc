@@ -20,11 +20,11 @@ public class MasterSocket {
     public static void main(String[] args) throws Exception {
 
         // MC parameters
-        int totalCount = 120000000; // total number of throws on a Worker 16000000
+        int totalCount = 1200000; // total number of throws on a Worker 16000000
         int total = 0; // total number of throws inside quarter of disk
         double pi;
 
-        String filename = "./out_mws_salleG26_4c.txt.txt";
+        String filename = "./out_mws_salleG26_4c.txt";
 
         int numWorkers = maxServer;
         int thread_by_worker = 1;
@@ -66,7 +66,7 @@ public class MasterSocket {
         //create worker's socket
         for (int i = 0; i < numWorkers; i++) {
             try {
-                sockets[i] = new Socket(ip[i], initial_port + i);
+                sockets[i] = new Socket(ip[0], initial_port + i);
                 System.out.println("SOCKET = " + sockets[i]);
 
                 reader[i] = new BufferedReader(new InputStreamReader(sockets[i].getInputStream()));
@@ -82,10 +82,12 @@ public class MasterSocket {
 
 
         String message_repeat = "y";
+        int iterationCount = 0;
+        int maxIterations = 10;
 
         long stopTime, startTime;
 
-        while (message_repeat.equals("y")) {
+        while (iterationCount < maxIterations) {
 
             total = 0;
 
@@ -110,7 +112,7 @@ public class MasterSocket {
             for (int i = 0; i < numWorkers; i++) {
                 total += Integer.parseInt(tab_total_workers[i]);
             }
-            pi = 4.0 * total / totalCount / numWorkers;
+            pi = 4.0 * total / totalCount;
 
             stopTime = System.currentTimeMillis();
 
@@ -125,13 +127,14 @@ public class MasterSocket {
 
             writeFile(filename, pi, totalCount, numWorkers, thread_by_worker, startTime, stopTime);
 
-            System.out.println("\n Repeat computation (y/N): ");
-            try {
-                message_repeat = bufferRead.readLine();
-                System.out.println(message_repeat);
-            } catch (IOException ioE) {
-                ioE.printStackTrace();
-            }
+//            System.out.println("\n Repeat computation (y/N): ");
+//            try {
+//                message_repeat = bufferRead.readLine();
+//                System.out.println(message_repeat);
+//            } catch (IOException ioE) {
+//                ioE.printStackTrace();
+//            }
+            iterationCount++;
         }
 
         for (int i = 0; i < numWorkers; i++) {

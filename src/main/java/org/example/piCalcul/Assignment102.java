@@ -49,7 +49,7 @@ public class Assignment102 {
     public static void main(String[] args) {
         int[] n_total = {1200000, 12000000};
         int n_total_faible = 2500000;
-        int[] n_proc = {1, 2, 3, 4, 5, 6};
+        int[] n_proc = {1, 2, 3, 4, 5, 6, 7, 8};
         String filename = "out_ass102_Scala_Forte_salle_G26_4c.txt";  // out_ass102_Scala_Forte_salle_G26_4c  ; out_ass102_Scala_Faible_salle_G26_4c
         boolean scalabilite_forte = true;
 
