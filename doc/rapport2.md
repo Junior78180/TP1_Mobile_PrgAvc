@@ -65,6 +65,13 @@ Avec les valeurs :
 - Le temps d'exécution
 
 ## Séance 17 janvier
+![Schéma scalabilité](scalabilite.png)
+
+le SpeedUp superlineaire se manifeste uniquement lorsque la charge du processeur en mode séquentiel est très élevée. 
+Lorsqu'on dispose d'un parallélisme équilibré, on observe un speedup linéaire, c'est-à-dire que l'amélioration des performances est directement proportionnelle au nombre de processeurs utilisés.
+Cependant, dans la plupart des situations, le parallélisme entraîne des ralentissements qui font que le speedup devient sublinéaire ou "typical success".
+
+
 
 ### Scalabilité forte
 
@@ -73,8 +80,6 @@ Effectuer plus rapidement les mêmes simulations.
 ### Scalabilité faible
 
 Simuler des modèles plus grands ou plus détaillés sans augmenter la durée d'exécution.
-
-![Schéma scalabilité](scalabilite.png)
 
 ## TP4 (suite)
 
@@ -147,9 +152,15 @@ Arrivé à un certain nombre de processeurs, elle s'effondre.
 
 Ce graphique illustre le temps de résolution en fonction du nombre de workers et de processeurs.
 
-Sur l'axe vertical, on retrouve le speedUp. Ce speedUp consiste à comparer le temps d'exécution d'une tâche (T(1) séquentielle à celui obtenu en mode parallèle (T(n) avec n unités de traitement.
+Sur l'axe vertical, on retrouve le speedUp. Ce speedUp consiste à représenter l'accélération des performances grâce à la parallélisation. Le temps d'exécution avec un seul processus est noté T1, tandis que le temps mesuré avec p processus est noté p.
+Ntot représente le nombre total de flèches tirées vers la cible.
+p est le nombre de processeurs utilisés.
+ti correspond au temps nécessaire pour tirer une flèche.
+
+T1 = ntot * ti
+Tp = ntot / p * ti
 Le SpeedUp est défini par la formule suivante : 
-SpeedUp = T1 / Tn
+SpeedUp = T1 / Tp
 
 Par exemple, un speedUp de 3 signifie que la version parallèle est 3 fois plus rapide que la version séquentielle.
 
